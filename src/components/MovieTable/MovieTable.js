@@ -1,13 +1,14 @@
+//dependencies
 import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory,{ PaginationProvider, SizePerPageDropdownStandalone, PaginationListStandalone} from 'react-bootstrap-table2-paginator';
-
 import ReactPaginate from 'react-paginate';
 import filterFactory from 'react-bootstrap-table2-filter';
-import {connect} from 'react-redux';
+//config
+import {selectRow, columns} from './config';
 
-import {getipagemovies} from '../../actions';
-import {generate_option, columns, CaptionElement} from './config';
+//redux
+import {connect} from 'react-redux';
+import {getipagemovies, setcurrentmovieid} from '../../actions';
 
 class MovieTable extends React.Component{
     constructor(props)
@@ -18,15 +19,16 @@ class MovieTable extends React.Component{
     }
 
     handlePageClick(data){
-        console.log(data);
+        console.log('whwuyd');
         this.props.getipagemovies(data.selected + 1);
     }
+
     render(){
         return (
             <div className='container-fluid'>
                 <ReactPaginate
-                    previousLabel={'<'}
-                    nextLabel={'>'}
+                    previousLabel={'previous'}
+                    nextLabel={'next'}
                     breakLabel={'...'}
                     breakClassName={'break-me'}
                     pageCount={this.props.total_movies/20 + 1}
@@ -37,13 +39,15 @@ class MovieTable extends React.Component{
                     subContainerClassName={'pages pagination'}
                     activeClassName={'active'}
                 />
+            
                 <BootstrapTable 
-                keyField='id'
-                data={ this.props.popularmovies }
-                caption={<CaptionElement />}
-                columns={ columns }
-                isloading={this.props.isloading}
-                filter={ filterFactory() }/>
+                    keyField='id'
+                    data={ this.props.popularmovies }
+                    columns={ columns }
+                    isloading={this.props.isloading}
+                    filter={ filterFactory() }
+                    selectRow={ selectRow(this) }
+                />
             </div>
         );
     }
@@ -54,9 +58,9 @@ const mapStatetoProps  = ({movietable}) =>{
         popularmovies: movietable.popularmovies,
         total_movies: movietable.total_movies,
         isloading: movietable.isloading,
+        currentpage: movietable.currentpage,
+        currentselectedmovieid: movietable.currentselectedmovieid,
     }
 }
 
-export default connect(mapStatetoProps, {getipagemovies})(MovieTable);
-
-/*pagination={ paginationFactory(generate_option(this)) } */
+export default connect(mapStatetoProps, {getipagemovies, setcurrentmovieid})(MovieTable);

@@ -13,7 +13,8 @@ ____________________________
 */
 
 import MovieTable from './MovieTable/MovieTable';
-import PosterSlider from './PosterSlider';
+import PosterSlider from './PosterSlider/PosterSlider';
+import MovieInformation from './MovieInformation/MovieInformation';
 
 class App extends React.Component {
   constructor(props)
@@ -51,7 +52,7 @@ class App extends React.Component {
 
           {
             <div className = 'row'>
-              <h1>MovieInformation</h1>
+              <MovieInformation/>
             </div>
           }
           </div>
@@ -68,5 +69,6 @@ class App extends React.Component {
     );
   }
 }
+
 
 export default connect(null, {initmovietable})(App);
