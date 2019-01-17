@@ -35,7 +35,7 @@ class PosterSlider extends React.Component {
             this.props.popularmovies.map(movie => {
                 return(
                     <Carousel.Item>
-                        <img alt="480x320" src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} />
+                        <img alt="no images" src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} />
                         <Carousel.Caption>
                             <h3>{movie.original_title}</h3>
                             <p>{movie.overview}</p>
@@ -49,9 +49,9 @@ class PosterSlider extends React.Component {
       );
     }
 }
-const mapStatetoProps  = (state) =>{
+const mapStatetoProps  = ({movietable}) =>{
     return {
-      popularmovies: state.popularmovies_information,
+      popularmovies: movietable.popularmovies_information,
     }
   }
 

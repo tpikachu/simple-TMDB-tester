@@ -1,16 +1,11 @@
-import {
-    GET_POPULAR_MOVIES,
-} from '../actions/types';
+import { combineReducers } from 'redux';
 
-let INITIAL_STATE = {
-    popularmovies_information: [],
-}
+import actor from './actor_reducer';
+import movietable from './movietable_reducer';
 
-export default function(state=INITIAL_STATE, action) {
-    switch (action.type) {
-        case GET_POPULAR_MOVIES:
-            return { ...state, popularmovies_information: action.popularmovies }
-        default:
-            return state
-    }
-}
+const rootReducer = combineReducers({
+  actor,
+  movietable
+});
+
+export default rootReducer;

@@ -17,7 +17,7 @@ export function getpopularmovies() {
             .get(`/discover/movie?sort_by=popularity.desc&api_key=${api_key}&&page=1`)
             .then(res => {
                 console.log(res.data.results);
-                dispatch({type: GET_POPULAR_MOVIES, popularmovies: res.data.results})
+                dispatch({type: GET_POPULAR_MOVIES, popularmovies: res.data.results, popularmovies_counts: res.total_results})
             })
             .catch(error => {
                 console.log(error);

@@ -130,9 +130,9 @@ class PopularMovieTable extends React.Component{
     }
 }
 
-const mapStatetoProps  = (state) =>{
+const mapStatetoProps  = ({movietable}) =>{
     return {
-      popularmovies: state.popularmovies_information,
+      popularmovies: movietable.popularmovies_information,
     }
 }
 
