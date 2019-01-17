@@ -15,6 +15,7 @@ ____________________________
 import MovieTable from './MovieTable/MovieTable';
 import PosterSlider from './PosterSlider/PosterSlider';
 import MovieInformation from './MovieInformation/MovieInformation';
+import ActorTable from './ActorTable/ActorTable';
 
 class App extends React.Component {
   constructor(props)
@@ -63,7 +64,7 @@ class App extends React.Component {
         {
           //actor information
           <div className = 'col-md-2'>
-            <h1>actor actress information</h1>
+            <ActorTable />
           </div>
         }
 

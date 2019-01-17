@@ -1,13 +1,6 @@
 import React from 'react';
 import { textFilter } from 'react-bootstrap-table2-filter';
 
-const customTotal = (from, to, size) => (
-    <span className="react-bootstrap-table-pagination-total">
-        Showing { from } to { to } of { size } Results
-    </span>
-);
-
-
 function titleFormatter(column, colIndex, { sortElement, filterElement }) {
     return (
         <div style={ { display: 'flex', flexDirection: 'column' } }>
@@ -24,7 +17,8 @@ export function selectRow(_self){
         clickToSelect: true,
         style: { backgroundColor: '#c8e6c9' },
         onSelect: (row, isSelect, rowIndex, e) => {
-            _self.props.setcurrentmovieid(row.id);
+            _self.props.getselectedmoviedetails(row.id);
+            
         }
     }
 

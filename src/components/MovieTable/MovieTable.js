@@ -8,7 +8,7 @@ import {selectRow, columns} from './config';
 
 //redux
 import {connect} from 'react-redux';
-import {getipagemovies, setcurrentmovieid} from '../../actions';
+import {getipagemovies, getselectedmoviedetails} from '../../actions';
 
 class MovieTable extends React.Component{
     constructor(props)
@@ -19,7 +19,6 @@ class MovieTable extends React.Component{
     }
 
     handlePageClick(data){
-        console.log('whwuyd');
         this.props.getipagemovies(data.selected + 1);
     }
 
@@ -31,7 +30,7 @@ class MovieTable extends React.Component{
                     nextLabel={'next'}
                     breakLabel={'...'}
                     breakClassName={'break-me'}
-                    pageCount={this.props.total_movies/20 + 1}
+                    pageCount={1000}    //maxpagesize
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={this.handlePageClick}
@@ -63,4 +62,4 @@ const mapStatetoProps  = ({movietable}) =>{
     }
 }
 
-export default connect(mapStatetoProps, {getipagemovies, setcurrentmovieid})(MovieTable);
+export default connect(mapStatetoProps, {getipagemovies, getselectedmoviedetails})(MovieTable);
