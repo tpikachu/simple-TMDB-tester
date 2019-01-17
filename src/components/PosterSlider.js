@@ -51,7 +51,7 @@ class PosterSlider extends React.Component {
 }
 const mapStatetoProps  = ({movietable}) =>{
     return {
-      popularmovies: movietable.popularmovies_information,
+      popularmovies: movietable.popularmovies,
     }
   }
 

@@ -1,44 +1,12 @@
 import React from 'react';
-import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory from 'react-bootstrap-table2-paginator';
-import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
-import {connect} from 'react-redux';
+import { textFilter } from 'react-bootstrap-table2-filter';
 
 const customTotal = (from, to, size) => (
     <span className="react-bootstrap-table-pagination-total">
-      Showing { from } to { to } of { size } Results
+        Showing { from } to { to } of { size } Results
     </span>
-  );
+);
 
-function generate_option(length){
-    const options = {
-        paginationSize: 4,
-        pageStartIndex: 0,
-        // alwaysShowAllBtns: true, // Always show next and previous button
-        // withFirstAndLast: false, // Hide the going to First and Last page button
-        // hideSizePerPage: true, // Hide the sizePerPage dropdown always
-        // hidePageListOnlyOnePage: true, // Hide the pagination list when only one page
-        firstPageText: 'First',
-        prePageText: 'Back',
-        nextPageText: 'Next',
-        lastPageText: 'Last',
-        nextPageTitle: 'First page',
-        prePageTitle: 'Pre page',
-        firstPageTitle: 'Next page',
-        lastPageTitle: 'Last page',
-        showTotal: true,
-        paginationTotalRenderer: customTotal,
-        sizePerPageList: [{
-            text: '5', value: 5
-        }, {
-            text: '10', value: 10
-        }, {
-            text: 'All', value: length
-        }] // A numeric array is also available. the purpose of above example is custom the text
-    };
-
-    return options;
-}
 
 function titleFormatter(column, colIndex, { sortElement, filterElement }) {
     return (
@@ -50,7 +18,39 @@ function titleFormatter(column, colIndex, { sortElement, filterElement }) {
     );
 }
 
-const columns = [{
+export function generate_option(_self){
+    const options = {
+        paginationSize: 5,
+        pageStartIndex: 1,
+        // alwaysShowAllBtns: true, // Always show next and previous button
+         withFirstAndLast: true, // Hide the going to First and Last page button
+        // hideSizePerPage: true, // Hide the sizePerPage dropdown always
+        // hidePageListOnlyOnePage: true, // Hide the pagination list when only one page
+        firstPageText: '<<',
+        prePageText: '<',
+        nextPageText: '>',
+        lastPageText: '>>',
+        nextPageTitle: 'First page',
+        prePageTitle: 'Pre page',
+        firstPageTitle: 'Next page',
+        lastPageTitle: 'Last page',
+        showTotal: true,
+        paginationTotalRenderer: customTotal,
+        sizePerPageList: [{
+            text: '20', value: 20
+        }], // A numeric array is also available. the purpose of above example is custom the text
+        totalSize: _self.props.total_movies,
+        onPageChange: (page, sizePerPage) => {
+                _self.props.getipagemovies(page);
+            
+            console.log('Newest page:' + page);
+          }
+    };
+
+    return options;
+}
+
+export const columns = [{
     dataField: 'id',
     text: 'Movie ID',
     style: (cell, row, rowIndex, colIndex) => {
@@ -120,20 +120,5 @@ const columns = [{
           }
     }
 ];  
-const CaptionElement = () => <h3 style={{ borderRadius: '0.25em', textAlign: 'center', color: 'purple', border: '1px solid purple', padding: '0.5em' }}>The most popular 20 movies</h3>;
 
-class PopularMovieTable extends React.Component{
-    render(){
-        return (
-            <BootstrapTable keyField='id' data={ this.props.popularmovies } caption={<CaptionElement />} columns={ columns } pagination={ paginationFactory(generate_option(20)) } filter={ filterFactory() }/>
-        );
-    }
-}
-
-const mapStatetoProps  = ({movietable}) =>{
-    return {
-      popularmovies: movietable.popularmovies_information,
-    }
-}
-
-export default connect(mapStatetoProps, null)(PopularMovieTable);
+export const CaptionElement = () => <h3 style={{ borderRadius: '0.25em', textAlign: 'center', color: 'purple', border: '1px solid purple', padding: '0.5em' }}>The most popular movies</h3>;

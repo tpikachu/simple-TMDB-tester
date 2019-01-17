@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getpopularmovies} from '../actions';
+import {initmovietable} from '../actions';
 
 //components
 /*
@@ -12,7 +12,7 @@ ____________________________
 |______||_____________|____|
 */
 
-import PopularMovieTable from './PopularMovieTable';
+import MovieTable from './MovieTable/MovieTable';
 import PosterSlider from './PosterSlider';
 
 class App extends React.Component {
@@ -28,7 +28,7 @@ class App extends React.Component {
 
   componentDidMount()
   {
-    this.props.getpopularmovies();
+    this.props.initmovietable();
   }
 
   render() {
@@ -37,7 +37,7 @@ class App extends React.Component {
 
         {//popular movies title table
           <div className = 'col-md-4'>
-            <PopularMovieTable/>
+            <MovieTable/>
           </div>
         }
 
@@ -69,4 +69,4 @@ class App extends React.Component {
   }
 }
 
-export default connect(null, {getpopularmovies})(App);
+export default connect(null, {initmovietable})(App);

@@ -8004,6 +8004,13 @@ react-overlays@^0.8.0:
     react-transition-group "^2.2.0"
     warning "^3.0.0"
 
+react-paginate@^6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/react-paginate/-/react-paginate-6.2.1.tgz#90735c95c9836edb73597b605c6ffd8d3f2eaa32"
+  integrity sha512-7MaWiVi4SAFYq5tAGcMCaZE6AK4XxCDM0zEo6+ZthVkhYNnKy1LLkO6syYQu+dBvNfukJ7CurOIpGWnkydJiDQ==
+  dependencies:
+    prop-types "^15.6.1"
+
 react-prop-types@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/react-prop-types/-/react-prop-types-0.4.0.tgz#f99b0bfb4006929c9af2051e7c1414a5c75b93d0"
