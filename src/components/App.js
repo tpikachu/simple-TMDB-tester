@@ -52,6 +52,8 @@ class App extends React.Component {
 
           {
             <div className = 'row'>
+              <h3>{this.props.imoviedetails.original_title}</h3>
+              <p>{this.props.imoviedetails.overview}</p>
               <MovieInformation/>
             </div>
           }
@@ -70,5 +72,10 @@ class App extends React.Component {
   }
 }
 
+const mapStatetoProps  = ({movietable}) =>{
+  return {
+    imoviedetails:movietable.imoviedetails,
+  }
+}
 
-export default connect(null, {initmovietable})(App);
+export default connect(mapStatetoProps, {initmovietable})(App);

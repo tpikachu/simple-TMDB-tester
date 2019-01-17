@@ -12,7 +12,12 @@ let INITIAL_STATE = {
     currentpage: 1,
     isloading: true,
     currentselectedmovieid: 0,
-    imoveimages:[],
+    imoviedetails:{
+        images:{
+            backdrops:[],
+        }
+    },
+    imoviecasts:{}
 }
 
 export default function(state=INITIAL_STATE, action) {
@@ -22,7 +27,7 @@ export default function(state=INITIAL_STATE, action) {
 
         case SET_CURRENT_SELECTED_MOVIEID:
         console.log(action.imoveimages);
-            return {...state, currentselectedmovieid: action.movie_ID, imoveimages:action.imoveimages}
+            return {...state, currentselectedmovieid: action.movie_ID, imoviedetails:action.imoviedetails}
 
         case MOVIE_TABLE_INIT:
             return { ...state

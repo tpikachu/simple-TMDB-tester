@@ -49,7 +49,7 @@ export function setcurrentmovieid(movie_ID) {
             .get(`/movie/${movie_ID}?api_key=${api_key}&append_to_response=images`)
             .then(res => {
                 console.log(res);
-                dispatch({type:SET_CURRENT_SELECTED_MOVIEID, movie_ID:movie_ID, imoveimages:res.data.images.backdrops})
+                dispatch({type:SET_CURRENT_SELECTED_MOVIEID, movie_ID:movie_ID, imoviedetails:res.data})
             })
             .catch(error => {
                 console.log(error);

@@ -1,57 +1,40 @@
 import React from "react";
-import {Carousel} from 'react-bootstrap';
 import {connect} from 'react-redux';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 class PosterSlider extends React.Component {
 
-    constructor(props, context) {
-      super(props, context);
-  
-      this.handleSelect = this.handleSelect.bind(this);
-  
-      this.state = {
-        index: 0,
-        direction: null,
-      };
-    }
-  
-    handleSelect(selectedIndex, e) {
-      this.setState({
-        index: selectedIndex,
-        direction: e.direction
-      });
-    }
-    componentWillMount(){
-      this.setState({index:0})
-    }
     render() {
-      const { index, direction } = this.state;
-      const imoveimages = this.props.imoveimages;
-      console.log(imoveimages);
+      
+      const imovieimages = this.props.imoviedetails.images.backdrops;
+
+      if(!this.props.isloading)
+      {
+        return (
+          <Carousel  
+            showThumbs={false}
+            >
+          {
+            imovieimages.map(image => {
+              return (
+                  <img key={image.file_path} alt="no images" src={`https://image.tmdb.org/t/p/original/${image.file_path}`} />
+              );
+            })
+          }
+          </Carousel>
+        );
+      }
+
       return (
-        <Carousel
-          activeIndex={index}
-          direction={direction}
-          onSelect={this.handleSelect}
-        >
-        {
-          imoveimages.map(image => {
-            return (
-              <Carousel.Item key={image.file_path}>
-                  <img alt="no images" src={`https://image.tmdb.org/t/p/original/${image.file_path}`} />
-              </Carousel.Item>
-            );
-          })
-        }
-        </Carousel>
-      );
+        <div><p>loading...</p></div>
+      )
     }
 }
 const mapStatetoProps  = ({movietable}) =>{
     return {
-      popularmovies: movietable.popularmovies,
-      currentselectedmovieid: movietable.currentselectedmovieid,
-      imoveimages:movietable.imoveimages,
+      imoviedetails:movietable.imoviedetails,
+      isloading:movietable.isloading,
     }
   }
 
