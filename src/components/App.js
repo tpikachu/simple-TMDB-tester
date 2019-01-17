@@ -51,6 +51,7 @@ class App extends React.Component {
 
           {
             <div className = 'row'>
+              <h1>MovieInformation</h1>
             </div>
           }
           </div>
@@ -59,6 +60,7 @@ class App extends React.Component {
         {
           //actor information
           <div className = 'col-md-2'>
+            <h1>actor actress information</h1>
           </div>
         }
 
