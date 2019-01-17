@@ -14,7 +14,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
 export function getpopularmovies() {
     return function (dispatch) {
         axios
-            .get(`/discover/movie?sort_by=popularity.desc&api_key=${api_key}&&page=200`)
+            .get(`/discover/movie?sort_by=popularity.desc&api_key=${api_key}&&page=1`)
             .then(res => {
                 console.log(res.data.results);
                 dispatch({type: GET_POPULAR_MOVIES, popularmovies: res.data.results})
